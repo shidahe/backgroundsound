@@ -1,36 +1,26 @@
 package com.ua.shidah.myapplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.SeekBar;
 
-public class SettingsActivity extends AppCompatActivity {
-
-//    private int volume, effect;
+public class SettingsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-//        Intent intent = getIntent();
-//        volume = intent.getIntExtra("volume", 50);
-//        effect = intent.getIntExtra("effect", 50);
-
         SeekBar barVolume = (SeekBar)findViewById(R.id.seekBarVolume);
         SeekBar barEffect = (SeekBar)findViewById(R.id.seekBarEffect);
 
-        barVolume.setMax(100);
-        barVolume.setProgress(MainActivity.volume.getSoundVolume());
-        barEffect.setMax(100);
-        barEffect.setProgress(MainActivity.volume.getSoundEffect());
-
+        barVolume.setProgress(MainActivity.backgroundSound.getVolume());
+        barEffect.setProgress(MainActivity.backgroundSound.getVolume());
 
         barVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                MainActivity.volume.setSoundVolume(i);
+                MainActivity.backgroundSound.setVolume(i);
             }
 
             @Override
@@ -47,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
         barEffect.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                MainActivity.volume.setSoundEffect(i);
+                MainActivity.backgroundSound.setVolume(i);
             }
 
             @Override
@@ -62,16 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
     }
-//
-//    @Override
-//    public void onBackPressed(){
-//        Intent intent = new Intent();
-//        intent.putExtra("volume", volume);
-//        intent.putExtra("effect", effect);
-//        setResult(RESULT_OK, intent);
-//        super.onBackPressed();
-//        finish();
-//    }
+
 
 
 }
